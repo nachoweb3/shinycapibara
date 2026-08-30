@@ -5,7 +5,7 @@ const statusItems = [
   { label: "PUMPFUN", url: config.buyUrl, active: !isPlaceholder(config.buyUrl) },
   { label: "X", url: config.twitterUrl, active: !isPlaceholder(config.twitterUrl) },
   { label: "TELEGRAM", url: config.telegramUrl, active: !isPlaceholder(config.telegramUrl) },
-  { label: "CA", url: null, active: !isPlaceholder(config.contractAddress) },
+  { label: "CA", url: null, active: false },
 ];
 
 export default function Footer() {
@@ -19,7 +19,7 @@ export default function Footer() {
       <div className="container-x relative py-20">
         <div className="flex flex-col items-center gap-10 text-center">
           {/* Cinematic headline */}
-          <h2 className="display text-4xl tracking-tight sm:text-6xl md:text-7xl">
+          <h2 className="display title-hover text-4xl tracking-tight sm:text-6xl md:text-7xl">
             THE EVOLUTION
             <br />
             HAS BEGUN.
@@ -49,7 +49,7 @@ export default function Footer() {
             {statusItems.map((item) => (
               <div
                 key={item.label}
-                className="flex items-center justify-between rounded-lg border border-paper/10 px-4 py-2.5 font-mono text-xs"
+                className="flex items-center justify-between rounded-lg border border-paper/10 px-4 py-2.5 font-mono text-xs transition-all duration-300 hover:-translate-y-0.5 hover:border-green/25 hover:bg-paper/5"
               >
                 <span className="tracking-widest text-paper/40 uppercase">
                   {item.label}
@@ -59,7 +59,7 @@ export default function Footer() {
                     href={item.url!}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center gap-2 text-green transition-colors hover:text-green/80"
+                    className="flex items-center gap-2 text-green transition-all duration-300 hover:-translate-y-0.5 hover:text-green/80 hover:drop-shadow-[0_0_12px_rgba(74,138,74,0.28)]"
                   >
                     <span className="h-1.5 w-1.5 rounded-full bg-green" />
                     LIVE

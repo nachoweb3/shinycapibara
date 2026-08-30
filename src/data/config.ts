@@ -26,10 +26,10 @@ export const config = {
   description:
     "Meet Inusaur — the Shiba that evolved into something unexpected. A Shiba Inu with Bulbasaur's green body and iconic pink flower. The ultimate meme creature on Solana.",
 
-  // ── LINKS (null = COMING SOON state) ──────────────────────────────
+  // ── LINKS ────────────────────────────────────────────────────────
   buyUrl: null as string | null, // TODO: set when Pump.fun is ready
-  twitterUrl: null as string | null, // TODO: set when X account is ready
-  telegramUrl: null as string | null, // TODO: set when Telegram is ready
+  twitterUrl: "https://x.com/inusaur_saur",
+  telegramUrl: "https://t.me/inusaur_saur",
 
   // Token facts. Supply is intentionally unknown until announced.
   totalSupply: null as string | null,
@@ -171,67 +171,39 @@ export const config = {
   // ── MEME ARCHIVE (data-driven gallery) ────────────────────────────
   gallery: [
     {
-      image: "/images/inusaur-main.jpg",
-      title: "The First Sighting",
-      creator: "The Inusaur Tribe",
-      category: "lore",
-      tone: "green",
-    },
-    {
-      image: "/images/gallery/c5.jpg",
-      title: "Inusaur in the Wild",
+      image: "/images/gallery/photo_2026-08-30_02-51-43.jpg",
+      title: "Gallery 01",
       creator: "Community",
       category: "lore",
       tone: "moss",
     },
     {
-      image: "/images/gallery/c6.jpg",
-      title: "Green Fields, Pink Flowers",
+      image: "/images/gallery/photo_2026-08-30_02-52-15.jpg",
+      title: "Gallery 02",
       creator: "Community",
       category: "lore",
       tone: "clay",
     },
     {
-      image: "/images/gallery/d2.jpg",
-      title: "Close-Up Evolution",
+      image: "/images/gallery/photo_2026-08-30_02-52-20.jpg",
+      title: "Gallery 03",
       creator: "Community",
       category: "lore",
       tone: "gold",
     },
     {
-      image: "/images/gallery/m2.jpg",
-      title: "Unstoppable Ratio",
+      image: "/images/gallery/photo_2026-08-30_02-52-26.jpg",
+      title: "Gallery 04",
       creator: "Community",
       category: "meme",
       tone: "ink",
     },
     {
-      image: "/images/gallery/m3.jpg",
-      title: "Keep Evolving, Stay Green",
+      image: "/images/gallery/photo_2026-08-30_02-52-31.jpg",
+      title: "Gallery 05",
       creator: "The Inusaur Tribe",
       category: "meme",
       tone: "clay",
-    },
-    {
-      image: "/images/gallery/m4.jpg",
-      title: "The Legend Begins",
-      creator: "Community",
-      category: "meme",
-      tone: "moss",
-    },
-    {
-      image: "/images/gallery/m5.jpg",
-      title: "Green Energy",
-      creator: "Fan Art",
-      category: "meme",
-      tone: "gold",
-    },
-    {
-      image: "/images/gallery/m8.jpg",
-      title: "The Chosen One",
-      creator: "Community",
-      category: "meme",
-      tone: "ink",
     },
   ] as GalleryItem[],
 
