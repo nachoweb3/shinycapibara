@@ -1,5 +1,110 @@
 @import "tailwindcss";
 
+:root {
+  --scroll-parallax: 0px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  position: relative;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(116, 196, 122, 0.32), transparent 18%),
+    radial-gradient(circle at 82% 12%, rgba(224, 96, 128, 0.14), transparent 22%),
+    radial-gradient(circle at 50% 36%, rgba(27, 94, 67, 0.12), transparent 28%),
+    radial-gradient(circle at 70% 70%, rgba(53, 143, 98, 0.14), transparent 24%),
+    linear-gradient(180deg, rgba(246, 250, 247, 0.95) 0%, rgba(239, 246, 239, 1) 100%);
+  background-attachment: fixed;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: auto;
+  z-index: 0;
+  pointer-events: none;
+  filter: blur(90px);
+  opacity: 0.72;
+}
+
+body::before {
+  width: 32rem;
+  height: 32rem;
+  left: -8rem;
+  top: 8rem;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(74, 138, 74, 0.28), transparent 68%);
+}
+
+body::after {
+  width: 38rem;
+  height: 38rem;
+  right: -10rem;
+  bottom: 2rem;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(224, 96, 128, 0.16), transparent 62%);
+}
+
+@media (max-width: 640px) {
+  body {
+    background:
+      radial-gradient(circle at 50% 0%, rgba(74, 138, 74, 0.14), transparent 25%),
+      linear-gradient(180deg, rgba(248, 252, 248, 0.98) 0%, rgba(240, 247, 240, 1) 100%);
+  }
+
+  main > section::before {
+    width: 72vw;
+    height: 72vw;
+    filter: blur(72px);
+  }
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+main > section {
+  position: relative;
+  isolation: isolate;
+}
+
+main > section > * {
+  position: relative;
+  z-index: 1;
+}
+
+main > section::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 50%;
+  width: min(60vw, 42rem);
+  height: min(60vw, 42rem);
+  transform: translateX(-50%);
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(74, 138, 74, 0.2), rgba(74, 138, 74, 0.06) 38%, transparent 70%);
+  filter: blur(88px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+main > section::after {
+  content: "";
+  position: absolute;
+  inset: 12% 8% auto 8%;
+  height: 70%;
+  border-radius: 2rem;
+  background: linear-gradient(180deg, rgba(255,255,255,0.16), rgba(255,255,255,0));
+  border: 1px solid rgba(74, 138, 74, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
+  pointer-events: none;
+  z-index: 0;
+}
+
 /* ────────────────────────────────────────────────────────────────
    INUSAUR — design system
    Palette: deep green, pink flower, earthy accents. No neon. No gradients
@@ -115,12 +220,18 @@
 
 @keyframes leaf-fall {
   0% {
-    opacity: 1;
-    transform: translateY(-10px) rotate(0deg);
+    opacity: 0;
+    transform: translate3d(0, -10vh, 0) rotate(0deg) scale(0.8);
+  }
+  12% {
+    opacity: 0.95;
+  }
+  50% {
+    transform: translate3d(18px, 44vh, 0) rotate(180deg) scale(1);
   }
   100% {
     opacity: 0;
-    transform: translateY(100vh) rotate(360deg);
+    transform: translate3d(-16px, 112vh, 0) rotate(360deg) scale(0.9);
   }
 }
 
@@ -149,6 +260,12 @@
   body {
     @apply bg-paper text-ink font-body antialiased;
     text-rendering: optimizeLegibility;
+  }
+
+  a,
+  button,
+  [role="button"] {
+    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background-color 180ms ease;
   }
 
   ::selection {
@@ -187,6 +304,50 @@
   font-weight: 560;
   letter-spacing: -0.02em;
   line-height: 0.98;
+  text-shadow: 0 2px 18px rgba(74, 138, 74, 0.12);
+}
+
+@layer utilities {
+  .hover-lift {
+    transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease, background-color 220ms ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 40px -22px rgba(13, 31, 13, 0.28);
+  }
+
+  .hover-glow {
+    transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+  }
+
+  .hover-glow:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 24px rgba(74, 138, 74, 0.18);
+  }
+
+  .title-hover {
+    display: inline-block;
+    transition: transform 260ms ease, color 260ms ease, text-shadow 260ms ease, letter-spacing 260ms ease;
+  }
+
+  .title-hover:hover {
+    transform: translateY(-2px);
+    color: var(--color-moss);
+    text-shadow: 0 10px 22px rgba(74, 138, 74, 0.18);
+    letter-spacing: 0.02em;
+  }
+
+  .subtitle-hover {
+    display: inline-block;
+    transition: transform 260ms ease, color 260ms ease, opacity 260ms ease;
+  }
+
+  .subtitle-hover:hover {
+    transform: translateY(-1px);
+    color: var(--color-ink);
+    opacity: 1;
+  }
 }
 
 /* Fine grain overlay for cinematic texture */
@@ -209,20 +370,30 @@
   animation: particle-up 0.9s ease-out forwards;
 }
 
+/* Scroll-driven motion */
+[data-scroll-motion] {
+  will-change: transform, opacity;
+  transform: translate3d(0, var(--parallax-offset, 0px), 0);
+  opacity: var(--parallax-opacity, 1);
+}
+
 /* Scroll-reveal (driven by <Reveal />) */
 .reveal {
   opacity: 0;
   transform: translateY(28px);
   transition:
     opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.9s ease;
   transition-delay: var(--reveal-delay, 0ms);
-  will-change: opacity, transform;
+  will-change: opacity, transform, filter;
+  filter: blur(2px);
 }
 
 .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
+  filter: blur(0);
 }
 
 /* Hero entrance */
@@ -244,9 +415,19 @@
   animation: glow-pulse 3s ease-in-out infinite;
 }
 
+img {
+  filter: saturate(1.08) contrast(1.04);
+}
+
+button:hover,
+a:hover {
+  transform: translateY(-1px);
+}
+
 /* Leaf falling animation */
 .leaf-fall {
-  animation: leaf-fall 8s linear infinite;
+  animation: leaf-fall 14s linear infinite;
+  will-change: transform, opacity;
 }
 
 /* Scanline overlay */
@@ -338,6 +519,10 @@
   .glow-green,
   .leaf-fall {
     animation: none !important;
+  }
+
+  .donation-card {
+    box-shadow: none !important;
   }
 
   *,

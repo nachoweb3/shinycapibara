@@ -13,7 +13,14 @@
  */
 
 // The contract address is defined ONLY here and referenced everywhere else.
-const contractAddress = "5UK6x9TazpcpwGnq2iSyHaneEe7gJGAopF4cjsrvpump";
+const contractAddress = "BX2JAgGZJ4HjEHwVdPjna7hYseoVL3djfFMKRLy8pump";
+
+// All explorer / swap / buy links are derived from the CA above — updating
+// contractAddress automatically updates every link on the site.
+const solscanUrl = `https://solscan.io/token/${contractAddress}`;
+const dexscreenerUrl = `https://dexscreener.com/solana/${contractAddress}`;
+const jupiterUrl = `https://jup.ag/swap/SOL-${contractAddress}`;
+const pumpfunUrl = `https://pump.fun/coin/${contractAddress}`;
 
 export const config = {
   projectName: "Inusaur",
@@ -27,7 +34,7 @@ export const config = {
     "Meet Inusaur — the Shiba that evolved into something unexpected. A Shiba Inu with Bulbasaur's green body and iconic pink flower. The ultimate meme creature on Solana.",
 
   // ── LINKS ────────────────────────────────────────────────────────
-  buyUrl: null as string | null, // TODO: set when Pump.fun is ready
+  buyUrl: pumpfunUrl as string | null,
   twitterUrl: "https://x.com/inusaur_saur",
   telegramUrl: "https://t.me/inusaur_saur",
 
@@ -209,9 +216,9 @@ export const config = {
 
   // ── TOKEN TOOLS (null = COMING SOON state) ───────────────────────
   tools: [
-    { name: "DexScreener", url: null }, // TODO: activate when listed
-    { name: "Jupiter", url: null }, // TODO: activate when listed
-    { name: "Solscan", url: null }, // TODO: activate when contract is live
+    { name: "DexScreener", url: dexscreenerUrl },
+    { name: "Jupiter", url: jupiterUrl },
+    { name: "Solscan", url: solscanUrl },
   ] as { name: string; url: string | null }[],
 
   // ── SOCIAL (future X/Twitter integration — never fake posts) ──────

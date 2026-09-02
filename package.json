@@ -7,7 +7,9 @@
     "build": "next build && node -e \"require('fs').writeFileSync('out/.nojekyll', '')\"",
     "start": "next start",
     "lint": "eslint",
-    "sync:telegram": "node scripts/sync-telegram-gallery.js"
+    "sync:telegram": "node scripts/sync-telegram-full-history.js",
+    "sync:telegram:watch": "node scripts/sync-telegram-gallery-bot.js --watch",
+    "sync:telegram:auto": "node scripts/sync-telegram-gallery-bot.js --auto-commit"
   },
   "dependencies": {
     "@types/three": "^0.185.4",
