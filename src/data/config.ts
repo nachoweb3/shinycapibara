@@ -1,274 +1,204 @@
 /**
- * INUSAUR — centralized configuration
+ * RAIDOS — centralized configuration
  * ------------------------------------------------------------------
- * This file is the single source of truth for the whole website.
- * The contract address, links and all content live here and are
- * never duplicated elsewhere in the codebase.
+ * Single source of truth for the RaidOS website. Copy, pricing and
+ * contact data live here and are never duplicated elsewhere.
  *
  * ── HOW TO EDIT ────────────────────────────────────────────────────
- * • Links: replace the "#" placeholders with real URLs when ready.
- * • totalSupply: set to a string (e.g. "1,000,000,000") when known.
- * • lore / journey / gallery: add or remove entries freely.
- * ──────────────────────────────────────────────────────────────────
+ * • pricing: tune tiers freely — they render the pricing grid.
+ * • links: all socials point to the creator, @nacho_web3.
+ * ------------------------------------------------------------------
  */
 
-// The contract address is defined ONLY here and referenced everywhere else.
-const contractAddress = "BX2JAgGZJ4HjEHwVdPjna7hYseoVL3djfFMKRLy8pump";
-
-// All explorer / swap / buy links are derived from the CA above — updating
-// contractAddress automatically updates every link on the site.
-const solscanUrl = `https://solscan.io/token/${contractAddress}`;
-const dexscreenerUrl = `https://dexscreener.com/solana/${contractAddress}`;
-const jupiterUrl = `https://jup.ag/swap/SOL-${contractAddress}`;
-const pumpfunUrl = `https://pump.fun/coin/${contractAddress}`;
+const GITHUB_URL = "https://github.com/nachoweb3/raidos";
 
 export const config = {
-  projectName: "Inusaur",
-  ticker: "$SAUR",
-  chain: "Solana",
-  contractAddress,
+  projectName: "RaidOS",
+  tagline: "The Operating System for Web3 Communities",
 
   websiteUrl: "https://inusaur.online",
 
   description:
-    "Meet Inusaur — the Shiba that evolved into something unexpected. A Shiba Inu with Bulbasaur's green body and iconic pink flower. The ultimate meme creature on Solana.",
+    "RaidOS gives your Telegram community a brain: it answers members from your official info, tracks your token's market, runs raids and rewards your members with XP, quests and badges.",
 
   // ── LINKS ────────────────────────────────────────────────────────
-  buyUrl: pumpfunUrl as string | null,
-  twitterUrl: "https://x.com/inusaur_saur",
-  telegramUrl: "https://t.me/inusaur_saur",
+  githubUrl: GITHUB_URL,
+  creator: {
+    handle: "@nacho_web3",
+    instagram: "https://instagram.com/nacho_web3",
+    x: "https://x.com/nacho_web3_",
+    youtube: "https://youtube.com/@nacho_web3",
+  },
 
-  // Token facts. Supply is intentionally unknown until announced.
-  totalSupply: null as string | null,
+  // Demo bot that prospects can try live.
+  demoBot: "inusaurai_bot",
 
-  // ── NAVIGATION ────────────────────────────────────────────────────
+  // ── NAVIGATION ───────────────────────────────────────────────────
   nav: [
-    { label: "LORE", href: "#lore" },
-    { label: "EVOLUTION", href: "#evolution" },
-    { label: "TOKEN", href: "#token" },
-    { label: "GAME", href: "#game" },
-    { label: "ARCHIVES", href: "#archives" },
-    { label: "COMMUNITY", href: "#community" },
+    { label: "PRODUCT", href: "#product" },
+    { label: "DEMO", href: "#demo" },
+    { label: "PRICING", href: "#pricing" },
+    { label: "ONBOARDING", href: "#onboarding" },
+    { label: "FAQ", href: "#faq" },
   ],
 
-  // ── CHARACTER TRAITS ──────────────────────────────────────────────
-  traits: [
+  // ── THE FIVE LAYERS ──────────────────────────────────────────────
+  layers: [
     {
-      word: "HYBRID",
-      text: "Half Shiba, half Bulbasaur — 100% meme. The creature nobody asked for, but everyone needed.",
-      mark: "sparkle",
+      emoji: "🧠",
+      name: "Brain",
+      tag: "INTELLIGENCE",
+      blurb:
+        "Answers your members from your official info only — and says “I don't know” rather than inventing. Learns from pinned messages and admin posts.",
     },
     {
-      word: "EVOLVED",
-      text: "It started as a Shiba. Then the green bulb appeared. Then the flower bloomed. Then the legend began.",
-      mark: "wave",
+      emoji: "📊",
+      name: "Volume",
+      tag: "MARKET",
+      blurb:
+        "Live price, volume, liquidity, buys/sells and holders. Automatic spike, whale and liquidity-drain alerts — always from real data.",
     },
     {
-      word: "GREEN",
-      text: "Not your average Shiba. The green body is a statement. The pink flower is the signature.",
-      mark: "sun",
+      emoji: "⚡",
+      name: "Raids",
+      tag: "ACTIVATION",
+      blurb:
+        "Coordinate X pushes with goals, timers and XP rewards. Honest, SELF-REPORTED tracking — no fake engagement, ever.",
     },
     {
-      word: "UNSTOPPABLE",
-      text: "Inusaur doesn't stop. It doesn't quit. It doesn't panic. It just keeps evolving.",
-      mark: "leaf",
+      emoji: "🎮",
+      name: "XP & Quests",
+      tag: "RETENTION",
+      blurb:
+        "Levels, daily streaks, missions and badges that keep members coming back. Contribution pays — literally.",
     },
     {
-      word: "RARE",
-      text: "Shiba + Bulbasaur = one in a million. You can't make this up. You can only witness it.",
-      mark: "diamond",
-    },
-    {
-      word: "COMMUNITY-POWERED",
-      text: "A character is nothing without people who love it. The Inusaur tribe makes the evolution real.",
-      mark: "tribe",
-    },
-  ],
-
-  // ── LORE (fictional storytelling — editable) ──────────────────────
-  lore: [
-    {
-      chapter: "01",
-      title: "THE ORIGIN",
-      text: "Nobody knows where the first one came from. Some say it was born in the deepest grasslands. Others say it was created when a Shiba Inu wandered too far into a mysterious forest. But the old degens tell a different story...",
-      date: null,
-      image: null,
-    },
-    {
-      chapter: "02",
-      title: "THE AWAKENING",
-      text: "They say that when the meme economy reached its breaking point, something began to grow. First came the dogs. 🐕 Then came the fire. 🔥 And somewhere between the two... something started evolving.",
-      date: null,
-      image: null,
-    },
-    {
-      chapter: "03",
-      title: "THE EVOLUTION",
-      text: "🌱🦖 INUSAUR — A Shiba with the instincts of a survivor and the power of a creature that refuses to stop growing. It doesn't chase pumps. It grows them. It doesn't look for attention. It attracts it.",
-      date: null,
-      image: null,
-    },
-    {
-      chapter: "04",
-      title: "THE LEGEND",
-      text: "And every time the community believes the meme is dead... another leaf appears. Another evolution begins. Another chart goes vertical. 📈 The old world called it a Pokémon. The new world calls it a memecoin.",
-      date: null,
-      image: null,
-    },
-    {
-      chapter: "05",
-      title: "THE $SAUR ERA",
-      text: "Its name is InuSaur. $SAUR — Plant the meme. 🌱 Feed the community. 🦖 Watch it evolve. 📈 The evolution has begun.",
-      date: null,
-      image: null,
+      emoji: "😹",
+      name: "Meme Contests",
+      tag: "CULTURE",
+      blurb:
+        "Submissions, community voting, crowned winners with XP prizes. Your group's culture on autopilot.",
     },
   ],
 
-  // ── JOURNEY (no financial promises — just story stages) ───────────
-  journey: [
+  // ── DEMO TRANSCRIPT ──────────────────────────────────────────────
+  demo: [
+    { who: "user", name: "@newbie", text: "when was fair launch? was I too late?" },
     {
-      number: "01",
-      title: "DISCOVERY",
-      text: "The internet discovers the green Shiba. A screenshot appears. The feed goes quiet — then very loud.",
+      who: "bot",
+      name: "🧠 Community Brain",
+      text: "Fair launch was 12:00 UTC, March 3 — and no, the community keeps building every day. Anything else?",
     },
+    { who: "user", name: "@degen", text: "/volume" },
     {
-      number: "02",
-      title: "THE EVOLUTION",
-      text: "The bulb grows. The flower blooms. The creature becomes something new. The meme evolves.",
+      who: "bot",
+      name: "📊 $TOKEN MARKET",
+      text: "Price $0.000042 · 24H Vol $182K · Liq $74K · Buys 1,284 / Sells 917 · Trend: 🔥 ACCELERATING",
     },
+    { who: "user", name: "@raider", text: "/rank" },
     {
-      number: "03",
-      title: "THE TRIBE",
-      text: "The community begins creating memes, artwork and stories. The Inusaur tribe becomes the story.",
-    },
-    {
-      number: "04",
-      title: "THE LEGEND",
-      text: "Inusaur becomes an internet-native character. Green, rare, and impossible to forget.",
-    },
-    {
-      number: "05",
-      title: "THE $SAUR ERA",
-      text: "The token launches. The tribe grows. The legend becomes a movement. The green garden expands.",
+      who: "bot",
+      name: "🏆 RANK",
+      text: "Level 7 — Hardened Degen · 4,820 XP · 🔥 12-day streak · 🏅 3 badges",
     },
   ],
 
-  // ── EVOLUTION STAGES ──────────────────────────────────────────────
-  evolution: [
+  // ── PRICING ──────────────────────────────────────────────────────
+  pricing: [
     {
-      stage: "SHIBA",
-      label: "THE BEGINNING",
-      text: "A regular Shiba Inu. Cute. Memeable. But nothing special... yet.",
-      emoji: "🐕",
+      name: "Launch Setup",
+      emoji: "🚀",
+      price: "$300–$1,000",
+      unit: "one-time",
+      note: "Final price depends on group size and how much official content we train the brain on.",
+      features: [
+        "Full install on our infrastructure — zero servers for you",
+        "Brain trained on your official answers",
+        "Token wired into /volume with live market alerts",
+        "Starter quests + badges configured",
+        "Your first launch raid planned with your mods",
+        "Admin walkthrough for your team",
+      ],
+      cta: "DM to book",
+      href: "https://instagram.com/nacho_web3",
+      hot: false,
     },
     {
-      stage: "???",
-      label: "THE MYSTERY",
-      text: "Something strange happens. A green bulb appears on the Shiba's back. Nobody knows why.",
-      emoji: "🌱",
+      name: "Managed Hosting",
+      emoji: "🧠",
+      price: "$49–$299",
+      unit: "/month",
+      note: "Tiered by community size and features. Cancel anytime.",
+      features: [
+        "Everything in Launch Setup",
+        "24/7 uptime — we host, monitor and update",
+        "Market alerts watched around the clock",
+        "Monthly community health report",
+        "Branded commands & custom personality",
+        "Priority support on Telegram",
+      ],
+      cta: "DM to subscribe",
+      href: "https://x.com/nacho_web3_",
+      hot: true,
     },
     {
-      stage: "INUSAUR",
-      label: "THE EVOLUTION",
-      text: "The bulb blooms into a pink flower. The fur turns green. The creature is reborn. INUSAUR is here.",
-      emoji: "🌸",
+      name: "Self-hosted",
+      emoji: "🛠",
+      price: "Free",
+      unit: "open source",
+      note: "For technical teams. Runs on your machine, your data stays yours.",
+      features: [
+        "Complete source code on GitHub",
+        "Local AI via Ollama — privacy-first",
+        "Cloud AI mode also supported",
+        "63 automated tests, strict TypeScript",
+        "Community support via GitHub issues",
+      ],
+      cta: "Read the install guide",
+      href: GITHUB_URL,
+      hot: false,
     },
   ],
 
-  // ── MEME ARCHIVE (data-driven gallery) ────────────────────────────
-  gallery: [
+  // ── ONBOARDING TIMELINE ──────────────────────────────────────────
+  onboarding: [
     {
-      image: "/images/gallery/photo_2026-08-30_02-51-43.jpg",
-      title: "Gallery 01",
-      creator: "Community",
-      category: "lore",
-      tone: "moss",
+      day: "Day 1",
+      text: "You send your links, token contract and official answers. We deploy and train the brain.",
     },
     {
-      image: "/images/gallery/photo_2026-08-30_02-52-15.jpg",
-      title: "Gallery 02",
-      creator: "Community",
-      category: "lore",
-      tone: "clay",
+      day: "Day 2",
+      text: "Bot joins your group, quests and badges go live, your first raid is scheduled. Admin walkthrough for your team.",
     },
     {
-      image: "/images/gallery/photo_2026-08-30_02-52-20.jpg",
-      title: "Gallery 03",
-      creator: "Community",
-      category: "lore",
-      tone: "gold",
+      day: "Week 1",
+      text: "We tune answers and alert thresholds with your mods until it feels like your best moderator.",
     },
-    {
-      image: "/images/gallery/photo_2026-08-30_02-52-26.jpg",
-      title: "Gallery 04",
-      creator: "Community",
-      category: "meme",
-      tone: "ink",
-    },
-    {
-      image: "/images/gallery/photo_2026-08-30_02-52-31.jpg",
-      title: "Gallery 05",
-      creator: "The Inusaur Tribe",
-      category: "meme",
-      tone: "clay",
-    },
-  ] as GalleryItem[],
+  ],
 
-  // ── TOKEN TOOLS (null = COMING SOON state) ───────────────────────
-  tools: [
-    { name: "DexScreener", url: dexscreenerUrl },
-    { name: "Jupiter", url: jupiterUrl },
-    { name: "Solscan", url: solscanUrl },
-  ] as { name: string; url: string | null }[],
-
-  // ── SOCIAL (future X/Twitter integration — never fake posts) ──────
-  social: {
-    posts: [] as SocialPost[],
-  },
-
-  // ── MICROCOPY (used sparingly across the site) ────────────────────
-  microcopy: {
-    stayShiny: "STAY EVOLVED.",
-    neverPanics: "INUSAUR NEVER PANICS.",
-    keepCalm: "KEEP CALM. EVOLVE.",
-    shineHasBegun: "THE EVOLUTION HAS BEGUN.",
-    comingSoon: "COMING SOON",
-    awaitingGenesis: "AWAITING GENESIS",
-    launchPending: "LAUNCH SEQUENCE PENDING",
-    signalNotDetected: "SIGNAL NOT DETECTED",
-    systemInitializing: "SYSTEM INITIALIZING...",
-    evolutionInProgress: "EVOLUTION IN PROGRESS",
-    specimenDetected: "SPECIMEN DETECTED",
-  },
-
-  // ── DISCLAIMER ────────────────────────────────────────────────────
-  disclaimer:
-    "Inusaur is a meme/community project. Nothing on this website constitutes financial advice.",
+  // ── FAQ ──────────────────────────────────────────────────────────
+  faq: [
+    {
+      q: "Does RaidOS make fake volume or fake engagement?",
+      a: "No — by design. It detects and amplifies real activity. Every engagement number is either measured or explicitly labeled SELF-REPORTED, and alerts only fire on real market data.",
+    },
+    {
+      q: "Does my community's data leave my server?",
+      a: "In self-hosted local mode, no — AI runs through Ollama on your machine and message text never leaves. In managed mode, prompts go to the AI provider we configure, and message bodies are purged after a retention window.",
+    },
+    {
+      q: "Can it answer wrongly about my project?",
+      a: "The Brain only answers from the official knowledge base you approve. If the answer isn't there, it says it doesn't know and points members to your admins — it never improvises.",
+    },
+    {
+      q: "We already have mods. Why do we need this?",
+      a: "Mods answer the same five questions fifty times. RaidOS answers them instantly, all day, in every timezone — and hands your mods a briefing of what the community is actually confused about.",
+    },
+    {
+      q: "Can I self-host it and skip paying?",
+      a: "Yes — it's open source. Most teams come back for managed hosting when they'd rather not babysit a server mid-launch.",
+    },
+  ],
 } as const;
 
-/* ── TYPES ─────────────────────────────────────────────────────────── */
-
-export type GalleryItem = {
-  image: string | null;
-  title: string;
-  creator: string;
-  category: "meme" | "fan-art" | "lore" | "screenshot";
-  tone: "dawn" | "clay" | "moss" | "gold" | "ink" | "green";
-};
-
-export type SocialPost = {
-  id: string;
-  author: string;
-  handle: string;
-  text: string;
-  createdAt: string;
-};
-
-export type Trait = (typeof config.traits)[number];
-export type LoreChapter = (typeof config.lore)[number];
-export type JourneyStage = (typeof config.journey)[number];
-export type EvolutionStage = (typeof config.evolution)[number];
-
-/** True while a link is still a placeholder (not yet provided). */
-export const isPlaceholder = (url: string | null | undefined) =>
-  !url || url === "#";
+export type RaidConfig = typeof config;

@@ -1,37 +1,38 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import { config } from "@/data/config";
-import { WalletProvider } from "@/lib/wallet";
 import "../styles/globals.css";
 
-const fraunces = Fraunces({
+const grotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-fraunces",
-  style: ["normal", "italic"],
+  variable: "--font-grotesk",
   display: "swap",
 });
 
-const inter = Inter({
+const mono = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-mono",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(config.websiteUrl),
   title: {
-    default: `${config.projectName} (${config.ticker}) — The Shiba That Evolved`,
+    default: `${config.projectName} — ${config.tagline}`,
     template: `%s · ${config.projectName}`,
   },
   description: config.description,
   keywords: [
-    "Inusaur",
-    "$SAUR",
-    "Shiba Inu",
-    "Bulbasaur",
-    "Solana",
-    "meme token",
-    "hybrid creature",
+    "RaidOS",
+    "Telegram bot",
+    "web3 community",
+    "community management",
+    "memecoin",
+    "raid bot",
+    "XP bot",
+    "AI community",
+    "Ollama",
+    "volume alerts",
   ],
   alternates: {
     canonical: "/",
@@ -40,26 +41,21 @@ export const metadata: Metadata = {
     type: "website",
     url: "/",
     siteName: config.projectName,
-    title: `${config.projectName} (${config.ticker}) — The Shiba That Evolved`,
+    title: `${config.projectName} — ${config.tagline}`,
     description: config.description,
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${config.projectName} (${config.ticker}) — The Shiba That Evolved`,
+    title: `${config.projectName} — ${config.tagline}`,
     description: config.description,
   },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={`${fraunces.variable} ${inter.variable} h-full antialiased`}
-    >
-      <body className="grain flex min-h-full flex-col">
-        <WalletProvider>{children}</WalletProvider>
-      </body>
+    <html lang="en" className={`${grotesk.variable} ${mono.variable} h-full antialiased`}>
+      <body className="flex min-h-full flex-col">{children}</body>
     </html>
   );
 }

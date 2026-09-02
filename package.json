@@ -1,22 +1,18 @@
 {
-  "name": "shinycapibara",
-  "version": "0.1.0",
+  "name": "raidos-site",
+  "version": "1.0.0",
   "private": true,
+  "description": "RaidOS website — The Operating System for Web3 Communities (inusaur.online)",
   "scripts": {
     "dev": "next dev",
     "build": "next build && node -e \"require('fs').writeFileSync('out/.nojekyll', '')\"",
     "start": "next start",
-    "lint": "eslint",
-    "sync:telegram": "node scripts/sync-telegram-full-history.js",
-    "sync:telegram:watch": "node scripts/sync-telegram-gallery-bot.js --watch",
-    "sync:telegram:auto": "node scripts/sync-telegram-gallery-bot.js --auto-commit"
+    "lint": "eslint"
   },
   "dependencies": {
-    "@types/three": "^0.185.4",
     "next": "16.3.3",
     "react": "19.2.8",
-    "react-dom": "19.2.8",
-    "three": "^0.185.1"
+    "react-dom": "19.2.8"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
