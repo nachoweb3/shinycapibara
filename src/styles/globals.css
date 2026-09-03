@@ -1,20 +1,22 @@
 @import "tailwindcss";
 
-/* ── RAIDOS DESIGN SYSTEM ─────────────────────────────────────────
-   Dark web3 aesthetic: deep navy base, orange→violet gradient
-   accents, grid texture, glass cards. Orange = activation/market,
-   violet = intelligence. */
+/* ═══════════════════════════════════════════════════════════════
+   RAIDOS v2 — LIGHT SALES DESIGN SYSTEM
+   White canvas · animated gradient blobs (parallax) · glass
+   containers · 3D tilt cards · aggressive conversion focus.
+   ═══════════════════════════════════════════════════════════════ */
 
 :root {
-  --raidos-bg: #0b1020;
-  --raidos-bg2: #101731;
-  --raidos-card: rgba(255, 255, 255, 0.04);
-  --raidos-line: rgba(148, 163, 184, 0.16);
-  --raidos-text: #e8edf7;
-  --raidos-muted: #94a3b8;
-  --raidos-orange: #f97316;
-  --raidos-rose: #f43f5e;
-  --raidos-violet: #a855f7;
+  --r-bg: #ffffff;
+  --r-text: #0f172a;
+  --r-muted: #55617a;
+  --r-orange: #f97316;
+  --r-rose: #f43f5e;
+  --r-violet: #8b5cf6;
+  --r-cyan: #06b6d4;
+  --r-line: rgba(15, 23, 42, 0.08);
+  --r-glass: rgba(255, 255, 255, 0.62);
+  --r-glass-strong: rgba(255, 255, 255, 0.82);
 }
 
 html {
@@ -22,162 +24,274 @@ html {
 }
 
 body {
-  background-color: var(--raidos-bg);
-  color: var(--raidos-text);
+  background: var(--r-bg);
+  color: var(--r-text);
   overflow-x: hidden;
 }
 
-/* Subtle grid texture over the whole page */
-body::before {
+/* ── ANIMATED GRADIENT BLOBS (parallax layer) ─────────────────── */
+
+.blob {
+  position: fixed;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+}
+
+.blob-1 {
+  width: 46rem; height: 46rem;
+  top: -14rem; left: -12rem;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.45), rgba(244, 63, 94, 0.18) 55%, transparent 72%);
+  animation: drift1 26s ease-in-out infinite alternate;
+}
+
+.blob-2 {
+  width: 40rem; height: 40rem;
+  top: 22%; right: -16rem;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.38), rgba(6, 182, 212, 0.16) 55%, transparent 72%);
+  animation: drift2 32s ease-in-out infinite alternate;
+}
+
+.blob-3 {
+  width: 52rem; height: 52rem;
+  bottom: -18rem; left: 18%;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.3), rgba(249, 115, 22, 0.14) 55%, transparent 72%);
+  animation: drift3 38s ease-in-out infinite alternate;
+}
+
+@keyframes drift1 {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(6rem, 4rem, 0) scale(1.15); }
+}
+@keyframes drift2 {
+  from { transform: translate3d(0, 0, 0) scale(1.1); }
+  to   { transform: translate3d(-5rem, 6rem, 0) scale(0.95); }
+}
+@keyframes drift3 {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(7rem, -5rem, 0) scale(1.18); }
+}
+
+/* Scroll parallax: JS sets --parallax (px). Blobs drift slower than content */
+.parallax-slow {
+  transform: translateY(calc(var(--parallax, 0) * -0.18px));
+}
+.parallax-mid {
+  transform: translateY(calc(var(--parallax, 0) * -0.34px));
+}
+
+/* Fine grain so the white doesn't look flat */
+.grain::before {
   content: "";
   position: fixed;
   inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-  background-size: 44px 44px;
-  mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, black 30%, transparent 100%);
-}
-
-/* Ambient glows */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(560px 320px at 12% -4%, rgba(249, 115, 22, 0.16), transparent 70%),
-    radial-gradient(640px 360px at 88% 8%, rgba(168, 85, 247, 0.14), transparent 70%),
-    radial-gradient(720px 420px at 50% 108%, rgba(244, 63, 94, 0.1), transparent 72%);
-}
-
-main {
-  position: relative;
   z-index: 1;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image: radial-gradient(rgba(15, 23, 42, 0.055) 1px, transparent 1px);
+  background-size: 26px 26px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black, transparent 85%);
 }
 
-/* ── BRAND HELPERS ──────────────────────────────────────────────── */
+main, header, footer {
+  position: relative;
+  z-index: 2;
+}
 
-.raidos-gradient-text {
-  background: linear-gradient(90deg, var(--raidos-orange), var(--raidos-rose) 55%, var(--raidos-violet));
+/* ── GLASS ─────────────────────────────────────────────────────── */
+
+.glass {
+  background: var(--r-glass);
+  backdrop-filter: blur(18px) saturate(1.5);
+  -webkit-backdrop-filter: blur(18px) saturate(1.5);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 20px 50px -22px rgba(15, 23, 42, 0.28);
+  border-radius: 1.35rem;
+}
+
+.glass-strong {
+  background: var(--r-glass-strong);
+  backdrop-filter: blur(24px) saturate(1.7);
+  -webkit-backdrop-filter: blur(24px) saturate(1.7);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.95) inset,
+    0 26px 60px -24px rgba(15, 23, 42, 0.3);
+  border-radius: 1.35rem;
+}
+
+/* Ring highlight used on the popular plan */
+.glass-pop {
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.95) inset,
+    0 26px 60px -24px rgba(249, 115, 22, 0.45),
+    0 0 0 1.5px rgba(249, 115, 22, 0.6);
+}
+
+/* ── TYPE + ACCENTS ───────────────────────────────────────────── */
+
+.grad-text {
+  background: linear-gradient(92deg, var(--r-orange), var(--r-rose) 52%, var(--r-violet));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-.raidos-btn-primary {
+.tag {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  border-radius: 0.85rem;
-  padding: 0.9rem 1.7rem;
-  font-weight: 700;
-  color: #fff;
-  background: linear-gradient(90deg, var(--raidos-orange), var(--raidos-rose));
-  box-shadow: 0 10px 34px -12px rgba(249, 115, 22, 0.55);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-.raidos-btn-primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 14px 40px -12px rgba(249, 115, 22, 0.7);
+  gap: 0.4rem;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: var(--r-orange);
 }
 
-.raidos-btn-ghost {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  border-radius: 0.85rem;
-  padding: 0.9rem 1.7rem;
-  font-weight: 600;
-  color: var(--raidos-text);
-  border: 1px solid var(--raidos-line);
-  background: rgba(255, 255, 255, 0.02);
-  transition: border-color 0.15s ease, transform 0.15s ease;
-}
-.raidos-btn-ghost:hover {
-  border-color: rgba(249, 115, 22, 0.65);
-  transform: translateY(-1px);
-}
-
-.raidos-card {
-  border-radius: 1rem;
-  border: 1px solid var(--raidos-line);
-  background: var(--raidos-card);
-  backdrop-filter: blur(6px);
-  transition: border-color 0.2s ease, transform 0.2s ease;
-}
-.raidos-card:hover {
-  border-color: rgba(249, 115, 22, 0.45);
-  transform: translateY(-2px);
-}
-
-.raidos-chip {
+.chip {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
   border-radius: 999px;
-  border: 1px solid var(--raidos-line);
-  background: rgba(255, 255, 255, 0.03);
-  color: var(--raidos-muted);
+  border: 1px solid var(--r-line);
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(8px);
+  color: var(--r-muted);
   font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  padding: 0.35rem 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 0.4rem 0.95rem;
 }
 
-.raidos-tag {
-  font-size: 0.68rem;
+/* ── BUTTONS ──────────────────────────────────────────────────── */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  border-radius: 0.95rem;
+  padding: 1rem 1.9rem;
   font-weight: 800;
-  letter-spacing: 0.18em;
-  color: var(--raidos-orange);
-}
-
-/* Terminal-style demo transcript */
-.raidos-terminal {
-  border-radius: 1rem;
-  border: 1px solid var(--raidos-line);
-  background: rgba(5, 8, 18, 0.72);
-  font-family: var(--font-mono, ui-monospace, "Cascadia Mono", Consolas, monospace);
-  font-size: 0.86rem;
-  line-height: 1.65;
+  color: #fff;
+  background: linear-gradient(92deg, var(--r-orange), var(--r-rose));
+  box-shadow: 0 14px 34px -12px rgba(249, 115, 22, 0.6), 0 1px 0 rgba(255,255,255,0.35) inset;
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+  position: relative;
   overflow: hidden;
 }
-.raidos-terminal-bar {
-  display: flex;
-  gap: 0.4rem;
-  padding: 0.65rem 0.9rem;
-  border-bottom: 1px solid var(--raidos-line);
-  background: rgba(255, 255, 255, 0.03);
+.btn-primary::after {
+  /* moving shine */
+  content: "";
+  position: absolute;
+  top: 0; left: -60%;
+  width: 45%; height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,0.55), transparent);
+  transform: skewX(-18deg);
+  animation: shine 3.2s ease-in-out infinite;
 }
-.raidos-terminal-dot {
-  width: 0.65rem;
-  height: 0.65rem;
-  border-radius: 999px;
+@keyframes shine {
+  0%, 55% { left: -60%; }
+  85%, 100% { left: 130%; }
+}
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.015);
+  box-shadow: 0 20px 44px -12px rgba(249, 115, 22, 0.75), 0 1px 0 rgba(255,255,255,0.4) inset;
 }
 
-/* Scroll reveal */
-.raidos-reveal {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.95rem;
+  padding: 1rem 1.7rem;
+  font-weight: 700;
+  color: var(--r-text);
+  border: 1px solid var(--r-line);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  transition: border-color 0.16s ease, transform 0.16s ease;
 }
-.raidos-reveal.is-visible {
+.btn-ghost:hover {
+  border-color: rgba(249, 115, 22, 0.7);
+  transform: translateY(-2px);
+}
+
+/* ── 3D TILT CARDS (JS sets --rx/--ry/--tz) ───────────────────── */
+
+.tilt {
+  transform-style: preserve-3d;
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateZ(var(--tz, 0px)) scale(var(--hs, 1));
+  transition: transform 0.18s ease-out, box-shadow 0.18s ease-out;
+  will-change: transform;
+}
+.tilt:hover {
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.9) inset,
+    0 34px 70px -26px rgba(15, 23, 42, 0.4);
+}
+
+.tilt-inner {
+  transform: translateZ(34px); /* floating content above the glass */
+  transform-style: preserve-3d;
+}
+
+/* ── REVEAL ───────────────────────────────────────────────────── */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.is-visible {
   opacity: 1;
   transform: none;
 }
 
+/* Marquee strip */
+.marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+}
+.marquee-track {
+  display: flex;
+  gap: 3rem;
+  width: max-content;
+  animation: marquee 26s linear infinite;
+}
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+/* Pulse dot for "slots" urgency */
+.pulse-dot {
+  position: relative;
+  width: 0.55rem; height: 0.55rem;
+  border-radius: 999px;
+  background: #22c55e;
+}
+.pulse-dot::after {
+  content: "";
+  position: absolute;
+  inset: -0.28rem;
+  border-radius: 999px;
+  border: 1.5px solid rgba(34, 197, 94, 0.5);
+  animation: pulse 1.8s ease-out infinite;
+}
+@keyframes pulse {
+  0% { transform: scale(0.7); opacity: 1; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .raidos-reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
+  .blob, .marquee-track, .btn-primary::after, .pulse-dot::after {
+    animation: none !important;
   }
-  html {
-    scroll-behavior: auto;
-  }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
 }
